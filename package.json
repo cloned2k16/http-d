@@ -1,14 +1,14 @@
 {
         "name"              :   "http-d"
-    ,   "description"       :   "a very simple http daemon, which only rely on http and just few more libraries"    
+    ,   "description"       :   "a very simple http daemon, which only rely on http and just few more libraries"
     ,   "version"           :   "0.0.1"
     ,   "license"           :   "MIT"
     ,   "main"              :   "index.js"
     ,   "dependencies"      :   {
-                                    "fs"            :   ""    
+                                    "fs"            :   ""
                                 ,   "http"          :   ""
 
-                            }    
+                            }
     ,   "repository"        :   {
                                     "type"      :   "git"
                                 ,   "url"       :   "git@github.com:cloned2k16/http-d.git"
