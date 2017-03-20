@@ -4,7 +4,7 @@
     ,   http_daemon             =   {
                                         Name    :   'http-daemon'
                                     ,   Desc    :   'a very simple http daemon, which only rely on http and just few more libraries'    
-                                    ,   Version :   '0.0.1'    
+                                    ,   Version :   '0.0.2'    
     }
     ,   fs                      =   require     ('fs')
     ,   http                    =   require     ('http')
@@ -138,9 +138,10 @@
             var a       =arguments
             ,   l       =a.length
             ;
-            if (l > 1) port     = a[0];
-            if (l > 2) onError  = a[1];
-            if (l > 3) onStart  = a[2];
+            _log(l);
+            if (l >= 1) port     = a[0];
+            if (l >= 2) onError  = a[1];
+            if (l >= 3) onStart  = a[2];
             
             server.on('clientError' ,onError);
             //server.on('connection'  ,onConnection);
