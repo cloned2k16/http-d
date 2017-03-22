@@ -10,6 +10,10 @@
        return '[{"v6.10.0":"x64"}]';
     });     
     
+    httpd.map               ('/about'                   ,function (req,res,args) {
+       return "Hi i'm "+httpd.Name +'\nversion: '+httpd.Version+'\n'+httpd.Desc;
+    });     
+
     httpd.listen(1111);
     
     

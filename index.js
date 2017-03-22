@@ -3,8 +3,10 @@
     var ND
     ,   http_daemon             =   {
                                         Name    :   'http-daemon'
-                                    ,   Desc    :   'a very simple http daemon, which only rely on http and just few more libraries'    
-                                    ,   Version :   '0.0.2'    
+                                    ,   Desc    :   'a very simple http daemon, '
+                                                +   'which only rely on http and few more libraries, '    
+                                                +   'while can handle multiple static root folders and dynamic pages'
+                                    ,   Version :   '0.0.3'    
     }
     ,   fs                      =   require     ('fs')
     ,   http                    =   require     ('http')
