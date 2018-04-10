@@ -1,5 +1,6 @@
 # http-d
-a very simple http daemon, which only rely on http and just few more libraries
+a very simple HTTP Daemon, which only rely on http and just few more libraries
+
 
 ##### used by (NiMan Node Installation Manager)
 [![npm version](https://badge.fury.io/js/http-d.svg)](https://badge.fury.io/js/http-d)    
