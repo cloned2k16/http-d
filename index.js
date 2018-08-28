@@ -6,7 +6,7 @@
                                     ,   Desc    :   'a very simple http daemon, '
                                                 +   'which only rely on http and few more libraries, '    
                                                 +   'while can handle multiple static root folders and dynamic pages'
-                                    ,   Version :   '0.0.3'    
+                                    ,   Version :   '0.0.5'    
     }
     ,   fs                      =   require     ('fs')
     ,   http                    =   require     ('http')
