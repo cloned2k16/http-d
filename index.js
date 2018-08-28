@@ -148,7 +148,7 @@
             server.on('clientError' ,onError);
             //server.on('connection'  ,onConnection);
             
-            server.listen(port, function () { _log("listening on port:",port); });
+            server.listen(port, '0.0.0.0', function () { _log("listening on port:",port); });
             
             
         }  
