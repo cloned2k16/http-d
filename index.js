@@ -53,7 +53,18 @@
             res.end();                        
         
     }
-    ,   staticLookUp            =   function    (baseUrl,url,res)   {
+    ,	textResult				=	function    (res,data){
+        res.write(data);
+        res.end();
+	}
+    ,	binaryResult			=	function    (res,data){
+		res.setHeader('Accept-Ranges'	, 'bytes');
+		res.setHeader('Content-Length'	, data.length);
+		res.write(data);
+		res.end();
+
+	}
+	,	staticLookUp            =   function    (baseUrl,url,res)   {
             var path=baseUrl+url;
             fs.stat(path, function (err, stats) {
                 if(err == null) {
@@ -68,31 +79,57 @@
                         });
                     }
                     else {
-                      fs.readFile(path, "utf8", function(err, data) {
-                        if (err) errorPage(404,res,baseUrl);
+                      fs.readFile(path, function(err, data) {
+                        if (err) return errorPage(404,res,baseUrl);
                         else {
                             res.staticUrls[baseUrl]=1; // signal we found it!
-                            var ext=fileExt(path);
+                            var ext		=	fileExt(path).substring(1)
+							,	isBin	=	true
+							;
+							res.setHeader('Req-Extension', 	ext);
+							
                             switch (ext){
-                                case '.css':
-                                    //res.writeHeader(200, {"Content-Type": "text/css"});               // shall we ?
-                                    res.setHeader('Content-Type', 'text/css');
+								case 'htm':
+								case 'html':
+                                    res.setHeader('Content-Type', 	'text/html');
+									isBin=false;
                                     break;
-                                case '.json':
-                                case '.js':
-                                    res.setHeader('Content-Type', 'application/javascript');
+                                case 'css':
+                                    res.setHeader('Content-Type', 	'text/css');
+									isBin=false;
+                                    break;
+                                case 'json':
+									res.setHeader('Content-Type', 	'application/json');
+									isBin=false;
+                                    break;
+                                case 'js':
+                                    res.setHeader('Content-Type', 	'application/javascript');
+									isBin=false;
+									break;	
+									
+
+								case 'jpg':
+                                    res.setHeader('Content-Type', 'image/jpeg');
+									break
+								case 'png':
+                                    res.setHeader('Content-Type', 'image/png');
+									break;
+								case 'gif':
+                                    res.setHeader('Content-Type', 'image/gif');
+									break;
+									
                                 default:    
+									return errorPage(505,res,baseUrl);
                             }
-                            res.write(data);
-                            res.end();
+							if (isBin) return binaryResult(res,data);
+							else       return textResult  (res,data);
                         }    
                       });  
                     }
                     return;
                 } 
                 else if(err.code == 'ENOENT') {
-                    errorPage(404,res,baseUrl);
-                    return;
+                  return errorPage(404,res,baseUrl);
                 } 
                 
                 _log('unexpected error: ', err);
