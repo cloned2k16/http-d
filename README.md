@@ -1,6 +1,7 @@
 # http-d
 a very simple HTTP Daemon, which only rely on http plus few more libraries
 
+BTW .. the version graph viewer you see below is here https://njs.yaoo.net/  
 
 ##### used by NiMan (Node Installation Manager ) (https://github.com/cloned2k16/niMan)
 [![npm version](https://badge.fury.io/js/http-d.svg)](https://badge.fury.io/js/http-d)    
